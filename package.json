@@ -1,0 +1,18 @@
+{
+  "name": "Ractive-Materialize",
+  "version": "1.0.0",
+  "description": "",
+  "main": "demo/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\"",
+    "build": "rollup -c"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "express": "^4.14.0",
+    "i": "^0.3.5",
+    "rollup": "^0.36.3",
+    "u": "^0.1.0"
+  }
+}
