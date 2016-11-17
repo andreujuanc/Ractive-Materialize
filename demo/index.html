@@ -5,6 +5,9 @@
 
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.js"></script>
+   
         <script src='http://cdn.ractivejs.org/latest/ractive.js'></script>
         <script src='../dist/js/ractive-materialize.js'></script>
     </head>
@@ -15,13 +18,20 @@
             <appbar>
                 <a href="#" class="brand-logo">Logo</a>
             </appbar>
+            <div>
+                <dropdown>
+                    <dropdownitem text="One" />
+                    <dropdownitem text="Two" />
+                    <dropdownitem divider />
+                    <dropdownitem text="Seven?" />
+                </dropdown>
+            </div>
         </script>
         <script>
             var ractive = new Ractive({
                 el:'#app',
                 template:'#appbar'
             });
-            console.log('ractive', ractive);
         </script>
         
     </body>
