@@ -1,8 +1,8 @@
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory() :
-	typeof define === 'function' && define.amd ? define(factory) :
+	typeof define === 'function' && define.amd ? define(['ractive'],factory) :
 	(factory());
-}(this, (function () { 'use strict';
+}(this, (function (Ractive) { 'use strict';
 
 /************************************
  * 				APPBAR
