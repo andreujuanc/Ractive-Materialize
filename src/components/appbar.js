@@ -1,6 +1,8 @@
 /************************************
  * 				APPBAR
  ***********************************/
+import Ractive from 'ractive';
+
 Ractive.components.appbar = Ractive.extend({
 	isolated: true,
 	template:`

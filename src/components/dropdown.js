@@ -1,6 +1,8 @@
 /************************************
  * 			  DROPDOWN
  ***********************************/
+import Ractive from 'ractive';
+
 Ractive.components.dropdownitem = Ractive.extend({
 	isolated: true,
 	template:'<li {{#divider}} class="divider" {{/divider}} ><a href="#!">{{text}}</a></li>'
