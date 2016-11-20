@@ -1,38 +1,59 @@
-
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.js"></script>
-   
-        <script src='http://cdn.ractivejs.org/latest/ractive.js'></script>
-        <script src='../dist/js/ractive-materialize.js'></script>
-    </head>
-    <body>
-        <div id="app">
-        </div>
-        <script type="text/ractive" id="appbar">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.js"></script>
+
+    <script src='http://cdn.ractivejs.org/latest/ractive.js'></script>
+    <script src='../dist/js/ractive-materialize.js'></script>
+</head>
+
+<body>
+    <div id="app">
+    </div>
+    <script type="text/ractive" id="appbar">
             <appbar>
                 <a href="#" class="brand-logo">Logo</a>
             </appbar>
             <div>
-                <dropdown>
-                    <dropdownitem text="One" />
-                    <dropdownitem text="Two" />
-                    <dropdownitem divider />
-                    <dropdownitem text="Seven?" />
-                </dropdown>
+                <div>
+                    <dropdown>
+                        <dropdownitem text="One" />
+                        <dropdownitem text="Two" />
+                        <dropdownitem divider />
+                        <dropdownitem text="Seven?" />
+                    </dropdown>
+                </div>
+                <div>
+                    <autocomplete id="auto1" on-autoneeddata="autoneeddata"  items="{{items}}" >
+                    </autocomplete>
+                </div>
             </div>
         </script>
-        <script>
+    <script>
+        //jesus xD
+        setTimeout(function(){
             var ractive = new Ractive({
                 el:'#app',
-                template:'#appbar'
+                template:'#appbar',
+                oninit:function(){
+                    this.on('autoneeddata', function(value){
+                        this.set('items', {
+                            'Apple':null
+                        })
+                    });
+                },
+                data:{
+                    items:{}
+                }
             });
+        }, 10);
         </script>
-        
-    </body>
+
+</body>
+
 </html>
