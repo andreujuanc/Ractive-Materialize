@@ -3,7 +3,7 @@
  ***********************************/
 import Ractive from 'ractive';
 
-Ractive.components.dropdownitem = Ractive.extend({
+Ractive.components.checkbox = Ractive.extend({
 	isolated: true,
 	template:`
             <input type="checkbox" id="{{id}}" />
