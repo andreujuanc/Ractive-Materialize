@@ -32,6 +32,13 @@
                     <autocomplete id="auto1" on-autoneeddata="autoneeddata"  items="{{items}}" >
                     </autocomplete>
                 </div>
+                <div>
+                    <combobox id="combo1" label="Select potatoes" on-change="@this.onComboboxChanged(event)" value="{{combo1Value}}">
+                        <comboboxitem text="abc" value="1" />
+                        <comboboxitem text="def" value="2" />
+                    </combobox>
+                </div>
+
             </div>
         </script>
     <script>
@@ -46,6 +53,10 @@
                             'Apple':null
                         })
                     });
+                },
+                onComboboxChanged: function(event){
+                    var value = this.get('combo1Value');
+                    debugger;
                 },
                 data:{
                     items:{}
