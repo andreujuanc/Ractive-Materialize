@@ -4,22 +4,34 @@
 import Ractive from 'ractive';
 
 Ractive.components.dropdownitem = Ractive.extend({
-	isolated: true,
-	template:'<li {{#divider}} class="divider" {{/divider}} ><a href="#!">{{text}}</a></li>'
+    isolated: true,
+    template: '<li {{#divider}} class="divider" {{/divider}} ><a href="#!">{{text}}</a></li>'
 });
 
 Ractive.components.dropdown = Ractive.extend({
-	isolated: true,
-	template:`
-		<a class='dropdown-button btn' href='#' data-activates='dropdown1'>Drop Me!</a>
+    isolated: true,
+    template: `
+		<a href='#' data-activates='{{id}}'>
+            <i class="material-icons">more_vert</i>
+        </a>
 
         <!-- Dropdown Structure -->
-        <ul id='dropdown1' class='dropdown-content'>
+        <ul id='{{id}}' class='dropdown-content'>
             {{yield}}
         </ul>
 	`,
-    onrender: function(){
+    oninit: function () {
+        if (typeof this.get('id') === 'undefined' || this.get('id') === null) {
+            this.set('id', 'chk' + Date.now().toString());
+        }
+    },
+    onrender: function () {
         //window.test = this;
-        $(this.find('*')).dropdown();
+        var belowOrigin = this.get('beloworigin');
+        var constrain_width = this.get('constrainwidth')
+        $(this.find('*')).dropdown({
+            belowOrigin: belowOrigin,
+            constrain_width: constrain_width
+        });
     }
 });
