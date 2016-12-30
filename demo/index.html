@@ -37,6 +37,14 @@
                         <comboboxitem text="abc" value="1" />
                         <comboboxitem text="def" value="2" />
                     </combobox>
+
+                     <combobox id="combo2" label="Select potatoes"  value="{{combo2Value}}">
+                        <comboboxitem text="abc" value="1" />
+                        <comboboxitem text="def" value="2" />
+                    </combobox>
+                </div>
+                <div>
+                        Combobox value bind: {{combo1Value}}
                 </div>
                 <div>
                     <a class="waves-effect waves-light btn" href="#modal1">Modal</a>
@@ -67,8 +75,10 @@
                     });
                 },
                 onComboboxChanged: function(event){
+                    //debugger;
                     var value = this.get('combo1Value');
-                    debugger;
+                    this.set('combo2Value', value);
+                    //debugger;
                 },
                 data:{
                     items:{}

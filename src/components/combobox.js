@@ -1,12 +1,16 @@
 import Ractive from 'ractive';
 
+
 /************************************
  * 			  COMBOBOX ITEM
  ***********************************/
 
 Ractive.components.comboboxitem = Ractive.extend({
 	isolated: true,
-	template:'<option value="{{value}}">{{text}}</option>'
+	template:'<option value="{{value}}">{{text}}</option>',
+    onrender: function(){
+        $(this.parent.find('select')).material_select();
+    }
 });
 
 /************************************
@@ -15,7 +19,7 @@ Ractive.components.comboboxitem = Ractive.extend({
 Ractive.components.combobox = Ractive.extend({
     isolated: true,
     template: `
-            <select id="{{id}}" on-change="@this.selectedchanged(event)" value="{{value}}">
+            <select id="{{id}}" on-change="@this.selectedchanged(event)" value="{{value}}" >
                 <option value="" disabled selected>{{label}}</option>
                 {{yield}}
             </select>
@@ -23,27 +27,41 @@ Ractive.components.combobox = Ractive.extend({
             `,
     oninit: function () {
         //this.on('selectedchanged', this.selectedchanged);
+      
     },
     onrender: function () {
         var self = this;
+        var ctrl = this.find('select');
+        $(ctrl).on('change', function(event){ self.selectedchanged(event, self); });
+        $(ctrl).material_select();
+        this.observe('value', function(a, b, c, d){            
+            if(ctrl.value !== a){
+               ctrl.value = a;
+               self.update();
+            }
+            
+        });
+    },
+    onchange: function(){
         $(this.find('select')).material_select();
-        $(this.find('select')).on('change', function(event){ self.selectedchanged(event, self); });
+    },
+    oncomplete: function(){
+       //$(this.find('select')).material_select();
     },
     onteardown: function(){
-        debugger;//TODO: test
+        //TODO: test
         $(this.find('select')).material_select('destroy');
     },
     data: function () {
         return {
-            selected: null,
-            value:null
+            selected: null
         };
     },
     selectedchanged: function (event, self) {
-        debugger;
         var e = event;
         if (event.original)
             e = event.original;
+
         self.set('value', self.find('select').value);
         self.fire('change', event);
         //this.set('value', e.target.value);
