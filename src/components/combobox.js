@@ -7,7 +7,7 @@ import Ractive from 'ractive';
 
 Ractive.components.comboboxitem = Ractive.extend({
 	isolated: true,
-	template:'<option value="{{value}}">{{text}}</option>',
+	template:'<option selected="{{selected}}" value="{{value}}">{{text}}</option>',
     onrender: function(){
         $(this.parent.find('select')).material_select();
     }
