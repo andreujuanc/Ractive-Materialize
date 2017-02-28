@@ -7,7 +7,7 @@ Ractive.components.modalcontent = Ractive.extend({
     isolated: true,
     template: `
                 <div class="modal-content">
-                    <h4>{{title}}</h4>
+                    <h5>{{title}}</h5>
                     {{yield}}
                 </div>
 	`
@@ -25,8 +25,12 @@ Ractive.components.modalfooter = Ractive.extend({
 Ractive.components.modal = Ractive.extend({
     isolated: true,
     template: `
-		  <div id="{{id}}" class="modal">
-               {{yield}}
+		 <div  id="{{id}}" 
+                class="modal 
+                        {{#if type==='bottom'}}bottom-sheet{{/if}}"
+                        {{#size}}style="max-height:{{size}}"{{/size}} 
+            >
+                {{yield}}
           </div>
 	`,
     onrender: function () {

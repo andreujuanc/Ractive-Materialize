@@ -3,9 +3,6 @@
  ***********************************/
 import Ractive from 'ractive';
 
-/************************************
- * 			  CHECKBOX
- ***********************************/
 Ractive.components.checkbox = Ractive.extend({
 	isolated: true,
 	template:`

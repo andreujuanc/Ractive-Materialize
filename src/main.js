@@ -9,3 +9,4 @@ import { } from './components/autocomplete';
 import { } from './components/checkbox';
 import { } from './components/combobox';
 import { } from './components/modal';
+import { } from './components/preloader';
