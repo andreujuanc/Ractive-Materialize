@@ -38,8 +38,16 @@ Ractive.components.combobox = Ractive.extend({
             if(ctrl.value !== a){
                ctrl.value = a;
                self.update();
-            }
-            
+               $(self.find('select')).material_select();
+            }            
+        });
+
+        this.observe('dataSource', function(a, b, c, d){         
+            console.log('data source changed', arguments)  
+            setTimeout(function() {
+                //self.update();
+                $(self.find('select')).material_select();     
+            }, 1);           
         });
     },
     onchange: function(){

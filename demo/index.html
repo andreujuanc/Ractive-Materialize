@@ -8,7 +8,9 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.js"></script>
 
-    <script src='http://cdn.ractivejs.org/latest/ractive.js'></script>
+    <!--<script src='http://cdn.ractivejs.org/latest/ractive.js'></script>-->
+    https://cdn.jsdelivr.net/npm/ractive
+    <script src="https://cdn.jsdelivr.net/npm/ractive"></script>
     <script src='../dist/js/ractive-materialize.js'></script>
 </head>
 
@@ -34,15 +36,18 @@
                 </div>
                 <div>
                     <combobox id="combo1" label="Select potatoes" on-change="@this.onComboboxChanged(event)" value="{{combo1Value}}">
-                        <comboboxitem text="abc" value="1" />
-                        <comboboxitem text="def" value="2" />
+                        {{#combo1Values}}
+                            <comboboxitem text="{{text}}" value="{{dataValue}}" />
+                        {{/combo1Values}}
                     </combobox>
 
-                     <combobox id="combo2" label="Select potatoes"  value="{{combo2Value}}">
-                        <comboboxitem text="abc" value="1" />
-                        <comboboxitem text="def" value="2" />
+                     <combobox id="combo2" label="Select oh yes"  value="{{combo2Value}}" dataSource="{{combo2Values}}">
+                        {{#combo2Values}}
+                            <comboboxitem text="{{text}}"  />
+                        {{/combo2Values}}
                     </combobox>
                 </div>
+              
                 <div>
                         Combobox value bind: {{combo1Value}}
                 </div>
@@ -73,11 +78,26 @@
                             'Apple':null
                         })
                     });
+                    this.set('combo1Values', [
+                        {text: 'item 1', dataValue:'1'},
+                        {text: 'item 2', dataValue:'2'}
+                    ]);
                 },
                 onComboboxChanged: function(event){
                     //debugger;
                     var value = this.get('combo1Value');
-                    this.set('combo2Value', value);
+                    if(value == '1')
+                      this.set('combo2Values', [
+                        {text: 'A', dataValue:'1'},
+                        {text: 'B', dataValue:'2'},
+                        {text: 'C', dataValue:'3'}
+                    ]);
+                    else
+                     this.set('combo2Values', [
+                        {text: 'D', dataValue:'4'},
+                        {text: 'E', dataValue:'5'},
+                        {text: 'F', dataValue:'6'}
+                    ]);
                     //debugger;
                 },
                 data:{
